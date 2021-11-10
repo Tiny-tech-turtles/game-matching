@@ -6,9 +6,42 @@ export const UserModel = {
       id: '',
       age: '',
       level: '',
-      device: '',
-      genre: '',
+      devicese: [],
+      genrese: [],
       type: ''
     }
+  },
+  getPropeties() {
+    const propety = {
+      levels: [
+        '初心者',
+        '中級者',
+        '上級者',
+        'プロ',
+      ],
+      devicese: [
+        'PC',
+        'Switch',
+        'スマホ',
+        'Xbox',
+        'PS5',
+        'PS4',
+      ],
+      genrese: [
+        'シューティング',
+        'アクション',
+        'ロールプレイング',
+        'アドベンチャー',
+        'レース',
+        'パズル',
+        'シミュレーション',
+      ],
+      typese: [
+        'ガチ勢',
+        'エンジョイ勢',
+        'プロです'
+      ],
+    }
+    return propety
   }
 }
