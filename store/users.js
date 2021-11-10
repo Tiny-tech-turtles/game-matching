@@ -25,5 +25,12 @@ export const actions = {
   update: firestoreAction(async (context, { userID, doc }) => {
     const collection = getCollections()
     await collection.doc(userID).set(doc)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
   }),
 }
