@@ -1,19 +1,37 @@
 <template>
-  <v-row>
-    <v-col class="text-center">
-      <img
-        src="/v.png"
-        alt="Vuetify.js"
-        class="mb-5"
-      >
-      <blockquote class="blockquote">
-        &#8220;First, solve the problem. Then, write the code.&#8221;
-        <footer>
-          <small>
-            <em>&mdash;John Johnson</em>
-          </small>
-        </footer>
-      </blockquote>
-    </v-col>
-  </v-row>
+  <v-container>
+    <SearchForm />
+    <UserList :users="users" />
+  </v-container>
 </template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex'
+
+import SearchForm from '@/components/SearchForm'
+import UserList from '@/components/UserList'
+
+export default {
+  components:{
+    UserList,
+    SearchForm,
+  },
+  data(){
+    return{
+
+    }
+  },
+  computed: {
+    ...mapGetters({
+      users: 'users/list'
+    })
+  },
+  methods: {
+    ...mapActions({
+    }),
+    searsh(text){
+      console.log(text)
+    }
+  }
+}
+</script>

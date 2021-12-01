@@ -1,0 +1,43 @@
+<template>
+  <v-card v-if="user">
+    <v-list three-line>
+      <v-list-item>
+        <v-list-item-avatar>
+          <v-img v-if="user.imageURL" :src="user.imageURL"></v-img>
+          <v-img v-else src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
+        </v-list-item-avatar>
+
+        <v-list-item-content>
+          <v-list-item-title>{{ user.name }}</v-list-item-title>
+          <v-list-item-subtitle>{{ user.id }}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </v-card>
+</template>
+
+<script>
+export default {
+  props: {
+    user: {
+      type: Object,
+      default: null,
+    },
+    userId: {
+      type: String,
+      default: null,
+    },
+    index: {
+      type: Number,
+      default: null,
+    },
+  },
+  data(){
+    return{
+      isOpenReply: false
+    }
+  },
+  methods: {
+  }
+}
+</script>

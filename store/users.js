@@ -9,7 +9,19 @@ const getCollections = () => {
   return db.collection('users')
 }
 
+export const state = () => ({
+  list: []
+})
+
+export const getters = {
+  list: (state) => state.list
+}
+
 export const actions = {
+  setListRef: firestoreAction(({ bindFirestoreRef }) => {
+    const collection = getCollections()
+    bindFirestoreRef('list', collection)
+  }),
   get: firestoreAction(async (context, { userID }) => {
 
     const collection = getCollections()
@@ -31,6 +43,5 @@ export const actions = {
       .catch((err) => {
         console.log(err)
       })
-
   }),
 }
