@@ -14,8 +14,8 @@ export default {
   components:{
     TabBer,
   },
-  created(){
-    this.setUsersRef()
+  async created(){
+    await this.setUsersRef()
   },
   methods: {
     ...mapActions({

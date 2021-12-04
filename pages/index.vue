@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <UserList :users="users" />
-    {{ users }}
   </v-container>
 </template>
 

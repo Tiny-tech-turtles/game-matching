@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
 import UserListItem from '@/components/UserListItem'
 
 export default {
@@ -18,7 +19,7 @@ export default {
     UserListItem,
   },
   props: {
-    usres: {
+    users: {
       type: Array,
       default: () => [],
     },

@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-card v-if="user">
     <v-list three-line>
       <v-list-item>
@@ -14,6 +15,7 @@
       </v-list-item>
     </v-list>
   </v-card>
+</div>
 </template>
 
 <script>
