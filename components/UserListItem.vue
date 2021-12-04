@@ -23,19 +23,24 @@
           詳細
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="primary" rounded @click="follow()">フォローする</v-btn>
+        <v-btn v-if="isFollowed" color="primary" rounded>フォロー中</v-btn>
+        <v-btn v-else color="primary" rounded @click="followUser()">フォローする</v-btn>
     </v-card-actions>
   </v-card>
   <EditUserInfoCard
     :visible="UserInfoDialog"
     :user-info="user"
     :close-dialog="closeUserInfoDialog"
+    :follow-user="followUser"
+    :is-followed="isFollowed"
   />
 </div>
 </template>
 
 <script>
 import EditUserInfoCard from '@/components/UserInfoCardDialog'
+import { cloneDeep } from 'lodash'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   components:{
@@ -60,12 +65,32 @@ export default {
       UserInfoDialog: false
     }
   },
+  computed: {
+    ...mapGetters({
+      myUser: 'auth/user',
+      uid: 'auth/uid',
+    }),
+    isFollowed(){
+      return this.myUser?.followUsers.some((user) => user.id === this.userId)
+    }
+  },
   methods: {
+    ...mapActions({
+      updateUser: 'users/follow',
+    }),
     toggleUserInfoDialog() {
       this.UserInfoDialog = !this.UserInfoDialog
     },
     closeUserInfoDialog() {
       this.UserInfoDialog = false
+    },
+    async followUser() {
+      const userInfo = cloneDeep(this.myUser)
+      userInfo.followUsers.push(this.user)
+      await this.updateUser({
+        userID: this.uid,
+        doc: userInfo,
+      })
     },
   }
 }

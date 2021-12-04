@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <UserList :users="users" />
+    <UserList :users="followUsers" />
   </v-container>
 </template>
 
@@ -14,11 +14,21 @@ export default {
   },
   data(){
     return {
+      followUsers: []
     }
   },
   computed: {
-  ...mapGetters({
-      users: 'users/list'
+    ...mapGetters({
+      users: 'users/list',
+      user: 'auth/user',
+    }),
+  },
+  mounted(){
+    this.users.forEach((user) => {
+      console.log(this.user?.followUsers.some((followuser) => followuser.id === user.id))
+      if(this.user?.followUsers.some((followuser) => followuser.id === user.id)){
+        this.followUsers.push(user)
+      }
     })
   },
   methods:{

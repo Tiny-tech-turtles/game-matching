@@ -16,31 +16,22 @@
       </v-card-title>
 
       <v-card-text>
-        <v-text-field v-model="info.name" placeholder="名前" />
-        <v-text-field v-model="info.id" placeholder="ID" />
-        <v-text-field v-model="info.age" placeholder="年齢" />
-        <v-select
-          v-model="info.level"
-          placeholder="レベル"
-          :items="propety.levels"
-        />
-        <v-select
-          v-model="info.devicese"
-          placeholder="デバイス"
-          multiple
-          :items="propety.devicese"
-        />
-        <v-select
-          v-model="info.genrese"
-          placeholder="ジャンル"
-          multiple
-          :items="propety.genrese"
-        />
-        <v-select
-          v-model="info.type"
-          placeholder="タイプ"
-          :items="propety.typese"
-        />
+        <v-row>
+          <v-col cols="3"><p class="text-subtitle-1">名前</p></v-col>
+          <v-col cols="9"><p class="text-h6">{{ info.name }}</p></v-col>
+          <v-col cols="3"><p class="text-subtitle-1">ID</p></v-col>
+          <v-col cols="9"><p class="text-h6">{{ info.id }}</p></v-col>
+          <v-col cols="3"><p class="text-subtitle-1">年齢</p></v-col>
+          <v-col cols="9"><p class="text-h6">{{ info.age }}</p></v-col>
+          <v-col cols="3"><p class="text-subtitle-1">レベル</p></v-col>
+          <v-col cols="9"><p class="text-h6">{{ info.level }}</p></v-col>
+          <v-col cols="3"><p class="text-subtitle-1">デバイス</p></v-col>
+          <v-col cols="9"><p class="text-h6">{{ info.devicese }}</p></v-col>
+          <v-col cols="3"><p class="text-subtitle-1">ジャンル</p></v-col>
+          <v-col cols="9"><p class="text-h6">{{ info.genrese }}</p></v-col>
+          <v-col cols="3"><p class="text-subtitle-1">タイプ</p></v-col>
+          <v-col cols="9"><p class="text-h6">{{ info.type }}</p></v-col>
+        </v-row>
       </v-card-text>
 
       <v-divider></v-divider>
@@ -48,12 +39,8 @@
       <v-card-actions>
         <v-btn @click="closeDialog">閉じる</v-btn>
         <v-spacer></v-spacer>
-        <v-btn
-          color="primary"
-          @click="follow(user)"
-        >
-          フォローする
-        </v-btn>
+        <v-btn v-if="isFollowed" color="primary" rounded>フォロー中</v-btn>
+        <v-btn v-else color="primary" rounded @click="followUser()">フォローする</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -76,6 +63,14 @@ export default {
       type: Function,
       required: true,
     },
+    followUser: {
+      type: Function,
+      required: true
+    },
+    isFollowed:{
+      type: Boolean,
+      require: true
+    }
   },
   data() {
     return {

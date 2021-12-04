@@ -9,7 +9,8 @@ export const UserModel = {
       level: '',
       devicese: [],
       genrese: [],
-      type: ''
+      type: '',
+      followUsers: [],
     }
   },
   getPropeties() {
