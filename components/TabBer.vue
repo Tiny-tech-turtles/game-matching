@@ -1,9 +1,9 @@
 <template>
   <v-footer
-    absolute fixed
+    fixed
     padless
   >
-    <v-card absolute fixed width="100%">
+    <v-card fixed width="100%">
       <v-tabs
         v-model="selected"
         background-color="deep-purple accent-4"

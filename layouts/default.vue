@@ -1,18 +1,26 @@
 <template>
   <v-app>
     <v-main>
-      <v-container>
-        <Nuxt />
-      </v-container>
+      <Nuxt />
     </v-main>
     <TabBer />
   </v-app>
 </template>
+
 <script>
+import { mapActions } from 'vuex'
 import TabBer from '@/components/TabBer'
 export default {
   components:{
-    TabBer
+    TabBer,
+  },
+  async created(){
+    await this.setUsersRef()
+  },
+  methods: {
+    ...mapActions({
+      setUsersRef: 'users/setListRef',
+    }),
   }
 }
 </script>

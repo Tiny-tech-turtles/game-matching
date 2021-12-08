@@ -3,12 +3,14 @@ export const UserModel = {
     return {
       name: '',
       role: 'user',
+      imageURL: '',
       id: '',
       age: '',
       level: '',
       devicese: [],
       genrese: [],
-      type: ''
+      type: '',
+      followUsers: [],
     }
   },
   getPropeties() {

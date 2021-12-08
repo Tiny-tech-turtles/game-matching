@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <v-container>
     <EditUserInfoCard
       :user-info="user"
       :save-user-info="saveUserInfo"
     />
-  </div>
+  </v-container>
 </template>
 
 <script>
