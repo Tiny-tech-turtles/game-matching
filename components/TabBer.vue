@@ -1,5 +1,6 @@
 <template>
   <v-footer
+    app
     fixed
     padless
   >
@@ -14,11 +15,19 @@
       >
         <v-tabs-slider></v-tabs-slider>
         <v-tab
-          v-for="tab in tabs"
-          :key="tab.icon"
-          :to="tab.to"
+          :to="existAuth"
         >
-          <v-icon>{{ tab.icon }}</v-icon>
+          <v-icon>mdi-account-cog</v-icon>
+        </v-tab>
+        <v-tab
+          to="/"
+        >
+          <v-icon>mdi-home</v-icon>
+        </v-tab>
+        <v-tab
+          to="/search"
+        >
+          <v-icon>mdi-magnify</v-icon>
         </v-tab>
       </v-tabs>
     </v-card>
@@ -26,16 +35,22 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        selected: '',
-        tabs: [
-          { title: 'setting', icon: 'mdi-account-cog', to: '/settings' },
-          { title: 'home', icon: 'mdi-home', to: '/' },
-          { title: 'search', icon: 'mdi-magnify', to: '/search' },
-        ]
-      }
-    },
-  }
+import { mapGetters } from 'vuex'
+
+export default {
+  data () {
+    return {
+      selected: '',
+    }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'auth/user',
+      uid: 'auth/uid',
+    }),
+    existAuth() {
+      return this.user?.name ? '/profile' : '/settings'
+    }
+  },
+}
 </script>

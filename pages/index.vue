@@ -9,12 +9,12 @@ import { mapActions, mapGetters } from 'vuex'
 import UserList from '@/components/UserList'
 
 export default {
-  components:{
+  components: {
     UserList,
   },
-  data(){
+  data() {
     return {
-      followUsers: []
+      followUsers: [],
     }
   },
   computed: {
@@ -23,19 +23,17 @@ export default {
       user: 'auth/user',
     }),
   },
-  mounted(){
+  mounted() {
     this.users.forEach((user) => {
-      console.log(this.user?.followUsers.some((followuser) => followuser.id === user.id))
-      if(this.user?.followUsers.some((followuser) => followuser.id === user.id)){
+      if (
+        this.user?.followUsers.some((followuser) => followuser.id === user.id)
+      ) {
         this.followUsers.push(user)
       }
     })
   },
-  methods:{
-    ...mapActions({
-    }),
-  }
+  methods: {
+    ...mapActions({}),
+  },
 }
 </script>
-
-

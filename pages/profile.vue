@@ -1,24 +1,24 @@
 <template>
   <v-container>
-    <Loading v-if="isLoading" @loading="loading" />
-    <EditUserInfoCard v-if="isVisible" :uid="uid" :user="user" />
+      <Loading v-if="isLoading" @loading="loading" />
+      <ProfileDetail v-if="isVisible" :user="user" :uid="uid" />
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import Loading from '@/components/Loading'
-import EditUserInfoCard from '@/components/settings/EditUserInfoCard'
+import ProfileDetail from '@/components/ProfileDetail'
+
 export default {
   components: {
     Loading,
-    EditUserInfoCard,
+    ProfileDetail
   },
   data() {
     return {
-      isLoading: false,
       isVisible: false,
-      toEdit: false,
+      isLoading: false,
     }
   },
   computed: {
@@ -35,24 +35,17 @@ export default {
       this.isLoading = true
     },
     finishLoading() {
+      this.isVisible=true
       this.isLoading = false
-      this.isVisible = true
     },
     loading(waitTime) {
       this.startLoading()
-      setTimeout(this.finishLoading, waitTime)
-    },
-    unVisibleEditUserInfo() {
-      new Promise((resolve) => {
-        location.reload(() => {
-          resolve()
-        })
-      }).then(() => {
-        this.toEdit = false
-      })
-    },
+        setTimeout(this.finishLoading, waitTime)
+    }
   },
 }
 </script>
 
-<style></style>
+<style>
+
+</style>
