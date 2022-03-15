@@ -5,11 +5,22 @@
     </v-row>
     <v-row>
       <v-card class="user-info-card" persistent>
-        <v-card-title class="headline">
-          {{ info.name }} ({{ info.age }})
+        <v-img class="background-image" :src="info.backgroundImageUrl" />
+        <v-card-title>
+          <v-row>
+            <v-col cols="3">
+              <v-img class="avatar-image" :src="info.avatarImageUrl" />
+            </v-col>
+            <v-col cols="9">
+              <p class="name-style headline">
+                {{ info.name }} ({{ info.age }})
+              </p>
+              <v-card-subtitle class="id-style text-h7"
+                >@{{ info.id }}</v-card-subtitle
+              >
+            </v-col>
+          </v-row>
         </v-card-title>
-
-        <v-card-subtitle class="text-h7"> @{{ info.id }} </v-card-subtitle>
 
         <v-divider />
 
@@ -83,5 +94,22 @@ export default {
 <style>
 .user-info-card {
   margin-top: 20px;
+}
+.background-image {
+  max-height: 300px;
+}
+.avatar-image {
+  padding-left: 50px;
+  padding-top: 50px;
+  margin-right: 20px;
+  max-width: 100px;
+  border-radius: 100%;
+}
+.name-style {
+  margin-top: 16px;
+}
+.id-style {
+  padding-left: 0px;
+  padding-top: 0px;
 }
 </style>
