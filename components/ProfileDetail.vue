@@ -5,6 +5,7 @@
     </v-row>
     <v-row>
       <v-card class="user-info-card" persistent>
+        <v-img class="background-image" :src="info.backgroundImageUrl" />
         <v-card-title>
           <v-row>
             <v-col cols="3">
@@ -93,6 +94,9 @@ export default {
 <style>
 .user-info-card {
   margin-top: 20px;
+}
+.background-image {
+  max-height: 300px;
 }
 .avatar-image {
   padding-left: 50px;

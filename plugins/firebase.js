@@ -8,13 +8,13 @@ let config = {}
 if (location.hostname === 'localhost') {
   console.log('🐸 ローカル開発環境')
   config = {
-    apiKey: "AIzaSyAcm95EC2cYBcYHH45YTXJft8GaHr8ukzY",
-    authDomain: "matting-game.firebaseapp.com",
-    projectId: "matting-game",
-    storageBucket: "matting-game.appspot.com",
-    messagingSenderId: "136550576650",
-    appId: "1:136550576650:web:22e43483d3ba3bacefe5f3",
-    measurementId: "G-ZS326KCNC5"
+    apiKey: "AIzaSyCBaoMy5QmgMHJSp9EswYGCKrdYu_pTxZ0",
+  authDomain: "game-matching-5a80b.firebaseapp.com",
+  projectId: "game-matching-5a80b",
+  storageBucket: "game-matching-5a80b.appspot.com",
+  messagingSenderId: "246763864263",
+  appId: "1:246763864263:web:9e209eded9c13dc7447ee2",
+  measurementId: "G-H2VJQ6EZPV"
   }
 } else {
   console.log('🔥 Firebase ホスティング環境')

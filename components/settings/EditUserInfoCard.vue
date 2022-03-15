@@ -1,22 +1,36 @@
 <template>
   <v-container>
+    <h3 class="headline">ユーザー情報</h3>
     <v-card class="user-info-card" persistent>
-      <h3 class="headline">ユーザー情報</h3>
+      <div
+        @dragover.prevent
+        @drop.prevent="dropBackgroundFiles($event)"
+        @click="dropBackgroundAreaClick"
+      >
+        <v-img class="background-image" :src="backgroundImage" />
+        <v-file-input
+          ref="backgroundInput"
+          accept="image/*"
+          multiple
+          style="display: none"
+          @change="addBackgroundFiles($event)"
+        />
+      </div>
       <v-card-title>
         <v-row>
           <v-col cols="3">
             <div
               @dragover.prevent
-              @drop.prevent="dropFiles($event)"
-              @click="dropAreaClick"
+              @drop.prevent="dropAvatarFiles($event)"
+              @click="dropAvatarAreaClick"
             >
               <v-img class="avatar-image" :src="avatarImage" />
               <v-file-input
-                ref="input"
+                ref="avatarInput"
                 accept="image/*"
                 multiple
                 style="display: none"
-                @change="addFiles($event)"
+                @change="addAvatarFiles($event)"
               />
             </div>
           </v-col>
@@ -94,6 +108,7 @@ export default {
     return {
       info: null,
       propety: null,
+      backgroundImage: '',
       avatarImage: '',
     }
   },
@@ -107,6 +122,7 @@ export default {
   },
   created() {
     this.avatarImage = '/avatar.png'
+    this.backgroundImage = '/black.jpeg'
     this.synUserInfo()
     this.propety = UserModel.getPropeties()
   },
@@ -126,16 +142,34 @@ export default {
     },
     synUserInfo() {
       this.info = { ...this.user }
-      this.avatarImage = this.info.avatarImageUrl
+      if (this.info.backgroundImageUrl) {
+        this.backgroundImage = this.info.backgroundImageUrl
+      }
+      if (this.info.avatarImageUrl) {
+        this.avatarImage = this.info.avatarImageUrl
+      }
     },
-    dropAreaClick() {
-      this.$refs.input.$refs.input.click()
+    dropBackgroundAreaClick() {
+      this.$refs.backgroundInput.$refs.input.click()
     },
-    dropFiles(event) {
+    dropBackgroundFiles(event) {
       const files = Array.from(event.dataTransfer?.files)
-      this.addFiles(files)
+      this.addBackgroundFiles(files)
     },
-    addFiles(files) {
+    addBackgroundFiles(files) {
+      if (files[0]) {
+        this.backgroundImage = URL?.createObjectURL(files[0])
+        this.info.backgroundImageUrl = this.backgroundImage
+      }
+    },
+    dropAvatarAreaClick() {
+      this.$refs.avatarInput.$refs.input.click()
+    },
+    dropAvatarFiles(event) {
+      const files = Array.from(event.dataTransfer?.files)
+      this.addAvatarFiles(files)
+    },
+    addAvatarFiles(files) {
       if (files[0]) {
         this.avatarImage = URL?.createObjectURL(files[0])
         this.info.avatarImageUrl = this.avatarImage
@@ -146,6 +180,9 @@ export default {
 </script>
 
 <style>
+.background-image {
+  max-height: 300px;
+}
 .avatar-image {
   padding-left: 50px;
   padding-top: 50px;
