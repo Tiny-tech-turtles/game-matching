@@ -3,7 +3,8 @@ export const UserModel = {
     return {
       name: '',
       role: 'user',
-      imageURL: '',
+      avatarImageUrl: '',
+      backgroundImageUrl: '',
       id: '',
       age: '',
       level: '',
